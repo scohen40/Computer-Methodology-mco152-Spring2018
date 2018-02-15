@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
 
-class DictionaryTest {
+class DictionaryDefTest {
 
 	@Test
 	void constructorWordTest() throws FileNotFoundException 
@@ -19,7 +19,7 @@ class DictionaryTest {
 		String w = D.dictionary.get(0).getWord();
 	
 		//then
-		assertEquals("aa", w);
+		assertEquals("AA", w);
 		
 	}
 

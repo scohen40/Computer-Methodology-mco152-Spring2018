@@ -1,4 +1,4 @@
-package cohenDictionary;
+package cohenVendingMaching;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -56,12 +56,26 @@ public class Dictionary {
 	public void arrayLoad(Scanner wordsIn)
 	{
 		  while(wordsIn.hasNext())
-	        {
-	           String line = wordsIn.nextLine();
-			   int space = line.indexOf(" ");
-	           String[] parts = {line.substring(0, space),line.substring(space)};
-	           Definition D = new Definition(parts[0],parts[1]);
-	           dictionary.add(D);   
+	        {		  
+			  String line = wordsIn.nextLine();
+			  String part1;
+			  String part2;
+			  int space = line.indexOf(" ");
+			  
+			  if(space != -1)
+			  {
+				part1 = line.substring(0, space);     	   		
+	        	   	part2 = line.substring(part1.length());
+				
+			  }
+			  else
+			  {
+				part1 = line;
+				part2 = null;
+			  }
+	        	           	   
+	        	  Definition D = new Definition(part1,part2);
+	        	  dictionary.add(D);         
 	        }
 	}
 }
