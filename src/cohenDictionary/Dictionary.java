@@ -24,7 +24,7 @@ public class Dictionary {
 	
 	public boolean contains(String ask)
 	{
-		String askLower = ask.toLowerCase();
+		String askLower = ask.toUpperCase();
 		Boolean contain = false;
 		for(int i = 0; i <= dictionary.size(); i++)
 		{
@@ -40,7 +40,7 @@ public class Dictionary {
 	
 	public String getDefinition(String ask)
 	{
-		String askLower = ask.toLowerCase();
+		String askLower = ask.toUpperCase();
 		String definition = null;
 		for(int i = 0; i <= dictionary.size(); i++)
 		{
@@ -58,8 +58,9 @@ public class Dictionary {
 		  while(wordsIn.hasNext())
 	        {
 	           String line = wordsIn.nextLine();
-	           String[] split = line.split(" ");
-	           Definition D = new Definition(split[0].toLowerCase(), split[1].toLowerCase());
+			   int space = line.indexOf(" ");
+	           String[] parts = {line.substring(0, space),line.substring(space)};
+	           Definition D = new Definition(parts[0],parts[1]);
 	           dictionary.add(D);   
 	        }
 	}
