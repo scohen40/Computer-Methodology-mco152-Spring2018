@@ -1,4 +1,4 @@
-package cohenDictionary;
+package cohen.dictionary;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

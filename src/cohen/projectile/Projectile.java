@@ -1,4 +1,4 @@
-package cohen;
+package cohen.projectile;
 
 public class Projectile {
 	double angle;

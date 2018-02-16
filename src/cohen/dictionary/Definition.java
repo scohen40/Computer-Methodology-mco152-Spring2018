@@ -1,4 +1,4 @@
-package cohenDictionary;
+package cohen.dictionary;
 
 public class Definition {
 	private String word;
@@ -9,7 +9,6 @@ public class Definition {
 		this.word = word;
 		this.definition = definition;
 	}
-	
 	
 	//getters
 	public String getWord()

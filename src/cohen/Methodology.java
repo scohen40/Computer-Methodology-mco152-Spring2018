@@ -1,5 +1,7 @@
 package cohen;
 
+import cohen.projectile.Projectile;
+
 public class Methodology {
 	public static void main(String[] args) {
 		double angle = 72;

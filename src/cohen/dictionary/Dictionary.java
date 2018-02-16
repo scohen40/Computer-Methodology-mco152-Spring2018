@@ -1,4 +1,4 @@
-package cohenDictionary;
+package cohen.dictionary;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -66,7 +66,6 @@ public class Dictionary {
 			  {
 				part1 = line.substring(0, space);     	   		
 	        	   	part2 = line.substring(part1.length());
-				
 			  }
 			  else
 			  {
