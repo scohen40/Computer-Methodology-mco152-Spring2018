@@ -1,4 +1,4 @@
-package cohenVendingMaching;
+package cohenDictionary;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -13,7 +13,7 @@ class DictionaryTest {
 	void constructorWordTest() throws FileNotFoundException 
 	{
 		//given
-		Dictionary D = new Dictionary("/Users/macbook/Desktop/dictionary.txt");		
+		Dictionary D = new Dictionary("src/cohenDictionary/dictionary.txt");		
 		//when
 		String w = D.dictionary.get(0).getWord();	
 		//then

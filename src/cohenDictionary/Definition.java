@@ -1,4 +1,4 @@
-package cohenVendingMaching;
+package cohenDictionary;
 
 public class Definition {
 	private String word;

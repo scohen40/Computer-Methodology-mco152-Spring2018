@@ -1,4 +1,4 @@
-package cohenVendingMaching;
+package cohenDictionary;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -74,8 +74,8 @@ public class Dictionary {
 				part2 = null;
 			  }
 	        	           	   
-	        	  Definition D = new Definition(part1,part2);
-	        	  dictionary.add(D);         
+	        	  Definition d = new Definition(part1,part2);
+	        	  dictionary.add(d);         
 	        }
 	}
 }
