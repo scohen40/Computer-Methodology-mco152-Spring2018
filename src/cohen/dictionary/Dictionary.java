@@ -3,12 +3,13 @@ package cohen.dictionary;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Dictionary {
     
-    ArrayList<Definition> dictionary = new ArrayList();
-    
+    //ArrayList<Definition> dictionary = new ArrayList<Definition>();
+    HashMap<String, String> map = new HashMap<String, String>();
 	//constructor loads the file dictionary.txt and forms and arraylist
 	public Dictionary(String fname) throws FileNotFoundException
 	{
@@ -24,17 +25,15 @@ public class Dictionary {
 	
 	public boolean contains(String ask)
 	{
-		String askLower = ask.toUpperCase();
-		Boolean contain = false;
-		for(int i = 0; i <= dictionary.size(); i++)
+		String askLower = ask.toUpperCase();		
+		if(map.containsKey(askLower))
 		{
-			if(dictionary.get(i).getWord().equals(askLower))
-			{
-				contain = true;
-				break;
-			}
+			return true;
+		}
+		else
+		{
+			return false;
 		}	
-		return contain;
 	}
 	
 	
@@ -42,13 +41,9 @@ public class Dictionary {
 	{
 		String askLower = ask.toUpperCase();
 		String definition = null;
-		for(int i = 0; i <= dictionary.size(); i++)
+		if(contains(askLower))
 		{
-			if(dictionary.get(i).getWord().equals(askLower))
-			{
-				definition = dictionary.get(i).getDefinition();
-				break;
-			}
+			definition = map.get(askLower);
 		}
 		return definition;
 	}	
@@ -58,8 +53,7 @@ public class Dictionary {
 		  while(wordsIn.hasNext())
 	        {		  
 			  String line = wordsIn.nextLine();
-			  String part1;
-			  String part2;
+			  String part1, part2;
 			  int space = line.indexOf(" ");
 			  
 			  if(space != -1)
@@ -73,8 +67,8 @@ public class Dictionary {
 				part2 = null;
 			  }
 	        	           	   
-	        	  Definition d = new Definition(part1,part2);
-	        	  dictionary.add(d);         
+	        	  map.put(part1, part2);
+	            
 	        }
 	}
 }
