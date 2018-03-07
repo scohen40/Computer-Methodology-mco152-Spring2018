@@ -12,7 +12,7 @@ public class ChangeGUI extends JFrame {
 	JTextField dimes = new JTextField();
 	JTextField nickels = new JTextField();
 	JTextField pennies = new JTextField();
-	JButton makeChange = new JButton("				Make Change");
+	JButton makeChange = new JButton("Make Change");
 
 
 	public ChangeGUI() {
@@ -23,19 +23,19 @@ public class ChangeGUI extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2));
 				
-		panel.add(new JLabel("				Price: "));
+		panel.add(new JLabel("Price: ", SwingConstants.CENTER));
 		panel.add(price);
-		panel.add(new JLabel("				Paid: "));
+		panel.add(new JLabel("Paid: ", SwingConstants.CENTER));
 		panel.add(paid);
-		panel.add(new JLabel("				Change: "));
+		panel.add(new JLabel("Change: ", SwingConstants.CENTER));
 		panel.add(makeChange);
-		panel.add(new JLabel("				Quarters: "));
+		panel.add(new JLabel("Quarters: ", SwingConstants.CENTER));
 		panel.add(quarters);
-		panel.add(new JLabel("				Dimes: "));
+		panel.add(new JLabel("Dimes: ", SwingConstants.CENTER));
 		panel.add(dimes);
-		panel.add(new JLabel("				Nickels: "));
+		panel.add(new JLabel("Nickels: ", SwingConstants.CENTER));
 		panel.add(nickels);
-		panel.add(new JLabel("				Pennies: "));
+		panel.add(new JLabel("Pennies: ", SwingConstants.CENTER));
 		panel.add(pennies);
 		
 		makeChange.addActionListener(this::changeTextFields);

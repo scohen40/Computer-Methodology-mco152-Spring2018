@@ -6,10 +6,10 @@ public class VendingMachine {
 		Change change = new Change();
 		Change priceAmount = new Change(price);
 		Change paidAmount = new Change(paid);
-		change.setQuarters(priceAmount.getQuarters() - paidAmount.getQuarters());
-		change.setDimes(priceAmount.getDimes() - paidAmount.getDimes());
-		change.setNickles(priceAmount.getNickles() - paidAmount.getNickles());
-		change.setPennies(priceAmount.getPennies() - paidAmount.getPennies());
+		change.setQuarters(paidAmount.getQuarters() - priceAmount.getQuarters());
+		change.setDimes(paidAmount.getDimes() - priceAmount.getDimes());
+		change.setNickles(paidAmount.getNickles() - priceAmount.getNickles());
+		change.setPennies(paidAmount.getPennies() - priceAmount.getPennies());
 		return change;
 	}
 }
