@@ -8,12 +8,7 @@ public class methhw1 {
 
 	public static void main(String[] args) {
 		// test written in main when JUnit wasn't passing
-		Change c = new Change(3.72);
-
-		int q = c.getQuarters();
-		int d = c.getDimes();
-		int n = c.getNickles();
-		int p = c.getPennies();
+		Change c = VendingMachine.pay(2, 1);
 
 		System.out.println(c.toString());
 
