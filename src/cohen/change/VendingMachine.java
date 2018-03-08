@@ -12,4 +12,8 @@ public class VendingMachine {
 		change.setPennies(paidAmount.getPennies() - priceAmount.getPennies());
 		return change;
 	}
+	
+	public static void main(String[] args) {
+		
+	}
 }

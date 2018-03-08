@@ -1,22 +1,28 @@
 package cohen.projectile;
 
 import java.awt.BorderLayout;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class ProjectileGUI extends JFrame {
-	JTextField angle = new JTextField("");
-	JTextField velocity = new JTextField("");
-	JTextField x = new JTextField("");
-	JTextField y = new JTextField("");
+	JFormattedTextField angle = new JFormattedTextField("");
+	JFormattedTextField velocity = new JFormattedTextField("");
+	JFormattedTextField time = new JFormattedTextField("");
+	JFormattedTextField x = new JFormattedTextField();
+	JFormattedTextField y = new JFormattedTextField();
 	
 	
 	
@@ -28,14 +34,31 @@ public class ProjectileGUI extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2));
 		
+		panel.add(new JLabel("Angle: ", SwingConstants.CENTER));
+		panel.add(angle);
+		panel.add(new JLabel("Velocity: ", SwingConstants.CENTER));
+		panel.add(velocity);
+		panel.add(new JLabel("Time: ", SwingConstants.CENTER));
+		panel.add(time);
+		panel.add(new JLabel("Coordinates", SwingConstants.CENTER));
+		panel.add(new JLabel("", SwingConstants.CENTER));
+		panel.add(new JLabel("X: ", SwingConstants.CENTER));
+		panel.add(x);
+		panel.add(new JLabel("Y: ", SwingConstants.CENTER));
+		panel.add(y);
 		
-		JButton button = new JButton("Button");
-//		
+		angle.addPropertyChangeListener("value", this::propertyChange);
+		velocity.addPropertyChangeListener("value", this::propertyChange);
+		time.addPropertyChangeListener("value", this::propertyChange);
 		
+
+		add(panel);
 	}
 
-	public void changeTextField(ActionEvent event) {
-		
+	public void propertyChange(PropertyChangeEvent event) {
+		Projectile p = new Projectile(Double.parseDouble(angle.getText()), Double.parseDouble(velocity.getText()), Double.parseDouble(time.getText()));
+		x.setValue(p.calculateX());
+		y.setValue(p.calculateY());
 	}
 	
 	public static void main(String[] args) {
