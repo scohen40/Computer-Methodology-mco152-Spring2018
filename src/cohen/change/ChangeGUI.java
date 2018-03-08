@@ -46,7 +46,6 @@ public class ChangeGUI extends JFrame {
 
 	
 	public void changeTextFields(ActionEvent event) {
-		//textfield.setText("Action Performed");
 		Change c = VendingMachine.pay(Double.parseDouble(price.getText()),Double.parseDouble(paid.getText()));
 		quarters.setText(Integer.toString(c.getQuarters()));
 		dimes.setText(Integer.toString(c.getDimes()));
