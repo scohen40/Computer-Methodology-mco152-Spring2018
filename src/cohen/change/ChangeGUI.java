@@ -6,13 +6,13 @@ import javax.swing.*;
 
 
 public class ChangeGUI extends JFrame {
-	JTextField price = new JTextField("");
-	JTextField paid = new JTextField("");
-	JTextField quarters = new JTextField();
-	JTextField dimes = new JTextField();
-	JTextField nickels = new JTextField();
-	JTextField pennies = new JTextField();
-	JButton makeChange = new JButton("Make Change");
+	private JTextField price = new JTextField("");
+	private JTextField paid = new JTextField("");
+	private JTextField quarters = new JTextField();
+	private JTextField dimes = new JTextField();
+	private JTextField nickels = new JTextField();
+	private JTextField pennies = new JTextField();
+	private JButton makeChange = new JButton("Make Change");
 
 
 	public ChangeGUI() {
@@ -46,7 +46,8 @@ public class ChangeGUI extends JFrame {
 
 	
 	public void changeTextFields(ActionEvent event) {
-		Change c = VendingMachine.pay(Double.parseDouble(price.getText()),Double.parseDouble(paid.getText()));
+		Change c = VendingMachine.pay(Double.parseDouble(price.getText()),
+				Double.parseDouble(paid.getText()));
 		quarters.setText(Integer.toString(c.getQuarters()));
 		dimes.setText(Integer.toString(c.getDimes()));
 		nickels.setText(Integer.toString(c.getNickles()));

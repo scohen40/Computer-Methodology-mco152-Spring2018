@@ -18,11 +18,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class ProjectileGUI extends JFrame {
-	JFormattedTextField angle = new JFormattedTextField("");
-	JFormattedTextField velocity = new JFormattedTextField("");
-	JFormattedTextField time = new JFormattedTextField("");
-	JFormattedTextField x = new JFormattedTextField();
-	JFormattedTextField y = new JFormattedTextField();
+	private JFormattedTextField angle = new JFormattedTextField("");
+	private JFormattedTextField velocity = new JFormattedTextField("");
+	private JFormattedTextField time = new JFormattedTextField("");
+	private JFormattedTextField x = new JFormattedTextField();
+	private JFormattedTextField y = new JFormattedTextField();
 	
 	
 	
@@ -56,9 +56,11 @@ public class ProjectileGUI extends JFrame {
 	}
 
 	public void propertyChange(PropertyChangeEvent event) {
-		Projectile p = new Projectile(Double.parseDouble(angle.getText()), Double.parseDouble(velocity.getText()), Double.parseDouble(time.getText()));
-		x.setValue(p.calculateX());
-		y.setValue(p.calculateY());
+		Projectile p = new Projectile(Double.parseDouble(angle.getText()), 
+				Double.parseDouble(velocity.getText()), 
+				Double.parseDouble(time.getText()));
+		x.setValue(p.getX());
+		y.setValue(p.getY());
 	}
 	
 	public static void main(String[] args) {

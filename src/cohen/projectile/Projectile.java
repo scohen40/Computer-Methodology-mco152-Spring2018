@@ -1,9 +1,9 @@
 package cohen.projectile;
 
 public class Projectile {
-	double angle;
-	double velocity;
-	double time;
+	private double angle;
+	private double velocity;
+	private double time;
 	
 	public Projectile(double angle, double velocity, double time) {
 		this.angle = angle;
@@ -11,13 +11,13 @@ public class Projectile {
 		this.time = time; 
 	}
 
-	public double calculateX() {
+	public double getX() {
 
 		return Math.cos(Math.toRadians(angle)) * velocity * time;
 
 	}
 
-	public double calculateY() {
+	public double getY() {
 		return Math.sin(Math.toRadians(angle)) * velocity * time - (.5 * 9.8 * (time * time));
 	}
 

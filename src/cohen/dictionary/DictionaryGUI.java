@@ -40,7 +40,6 @@ public class DictionaryGUI extends JFrame{
 			try {
 				changeTextField(e);
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				System.out.println("dictionary file not found. contact system admin.");
 			}
 		});

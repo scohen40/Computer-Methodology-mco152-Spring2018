@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Dictionary {
     
     //ArrayList<Definition> dictionary = new ArrayList<Definition>();
-    HashMap<String, String> map = new HashMap<String, String>();
+	private HashMap<String, String> map = new HashMap<String, String>();
 	//constructor loads the file dictionary.txt and forms and arraylist
 	public Dictionary(String fname) throws FileNotFoundException
 	{

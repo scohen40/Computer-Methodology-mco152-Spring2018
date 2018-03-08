@@ -1,10 +1,10 @@
 package cohen.change;
 
 public class Change {
-	int quarters;
-	int dimes;
-	int nickles;
-	int pennies;
+	private int quarters;
+	private int dimes;
+	private int nickles;
+	private int pennies;
 
 	// empty constructor
 	public Change() {
