@@ -14,11 +14,12 @@ import javax.swing.SwingConstants;
 
 
 public class DictionaryGUI extends JFrame{
-	JFormattedTextField word = new JFormattedTextField();
-	JButton button = new JButton("Get Definition");
-	JFormattedTextField definition = new JFormattedTextField();
+	private JFormattedTextField word = new JFormattedTextField();
+	private JButton button = new JButton("Get Definition");
+	private JFormattedTextField definition = new JFormattedTextField();
+	private Dictionary D;
 	
-	public DictionaryGUI() {
+	public DictionaryGUI() throws FileNotFoundException {
 		setTitle("Dictionary Viewer");
 		setSize(800, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -36,19 +37,17 @@ public class DictionaryGUI extends JFrame{
 		enter.add(button);
 		answer.add(definition);
 		
+		D = new Dictionary("src/cohen/Dictionary/dictionary.txt");
+		
 		button.addActionListener(e -> {
-			try {
-				changeTextField(e);
-			} catch (FileNotFoundException e1) {
-				System.out.println("dictionary file not found. contact system admin.");
-			}
+			changeTextField(e);
 		});
 		
 		add(panel);
 	}
 	
-	public void changeTextField(ActionEvent event) throws FileNotFoundException {
-		Dictionary D = new Dictionary("src/cohen/Dictionary/dictionary.txt");
+	public void changeTextField(ActionEvent event){
+		
 		String w =  word.getText();
 		word.setText(w);
 		if(D.contains(w)) {
@@ -60,7 +59,7 @@ public class DictionaryGUI extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		new DictionaryGUI().setVisible(true);
 		
 	}
