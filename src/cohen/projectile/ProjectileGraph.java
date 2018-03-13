@@ -2,6 +2,7 @@ package cohen.projectile;
 
 import javax.swing.JComponent;
 
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.List;
@@ -19,7 +20,7 @@ public class ProjectileGraph extends JComponent {
 		ArrayList<Integer> yPoints = new ArrayList();
 		int nPoints = 0;
 		g.setColor(Color.RED);	
-		for(int i = 0; i < 60; i++) {
+		for(int i = 0; i < 20; i++) {
 			int x = (int)projectile.getX(i);
 			int y = (int)projectile.getY(i);		
 				
@@ -28,27 +29,32 @@ public class ProjectileGraph extends JComponent {
 			g.drawString("("+x+", "+y+")", x, -y);	
 			
 			xPoints.add(x);
-			yPoints.add(-y);
+			yPoints.add(y);
 			nPoints++;
 		}	
+		nPoints++;
 		for(int i = 0; i < nPoints; i++) {
-			g.drawLine(xPoints.get(i), yPoints.get(i), xPoints.get(i++), yPoints.get(i++));
+			if(xPoints.get(i+1) != null && yPoints.get(i+1) != null)
+			{
+				g.drawLine(xPoints.get(i), -yPoints.get(i), xPoints.get(i+1), -yPoints.get(i+1));
+			}
+			else
+			{
+				break;
+			}
+			
 		}
 		
-		
 	}
-
+	
 }
 
-//hw 1: connect all the dots the lines to connect them
+
+//hw 1: connect all the dots the lines to connect them  -----????
 //hw 2: draw the coordinates(string) ----done
 //hw 3: colors, fill the dots in ----done
-//hw 4: put in graph lines
-//hw 5: projectile image
-//hw 6: multiple projectiles, 3 with different color lines, different numbers
-
-/**
- * projects- email the ideas 
- */
+//hw 4: put in graph lines  ----????
+//hw 5: projectile image		----do 2nd to last
+//hw 6: multiple projectiles, 3 with different color lines, different numbers -----do at the end (repeat the loops with diff colors)
 
 
