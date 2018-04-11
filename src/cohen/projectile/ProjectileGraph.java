@@ -70,5 +70,7 @@ public class ProjectileGraph extends JComponent {
 			g.drawLine(i, -0, i, -this.getHeight());
 		}
 	}
+	
+	
 
 }
