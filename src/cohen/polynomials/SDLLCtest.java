@@ -4,7 +4,7 @@ import cohen.polynomials.SDLLC.Node;
 
 
 
-	public class SDLLCtest  <T extends Comparable<T>> {
+	public class SDLLCtest  <Node> {
 		//the head node's reference variable 
 		    private Node head;
 		    private Node iterator;
@@ -79,9 +79,11 @@ import cohen.polynomials.SDLLC.Node;
 		    }
 		    
 	
+		public SDLLCtest.Node getHead() {
+	    		return head;
+	    }
 	
-	
-	private class Node<Integer>
+	class Node<Integer>
 	{
 	    private int info;
 	    private Node<Integer> prior = null;

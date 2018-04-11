@@ -93,94 +93,94 @@ public class SDLLC  <T extends Comparable<T>> {
         }
     }
     
-    /**
-     * remove the node holding value T
-     * @param value - T value to be removed
-     * @return boolean true if removed, false, if no such value in the list
-     */
-    public boolean remove(T value)
-    {
-        if(length==0)
-        {
-            return false;
-        }
-        else 
-        {
-            Node<T> current = head;
-            while(current != null)
-            {
-                if(current.getInfo().equals(value))
-                {
-                    if(length == 1){ //if node to be deleted is only one in list
-                        head = null;
-                        length = 0;
-                    }
-                    else if(current.getNext() == null)//node is tail
-                    {
-                        current.getPrior().setNext(null);
-                        length--;
-                    }
-                    else if(current == head)
-                    {
-                        head = current.getNext();
-                        current.getNext().setPrior(null);
-                        length--;
-                    }
-                    else
-                    {
-                        current.getNext().setPrior(current.getPrior()); 
-                        current.getPrior().setNext(current.getNext());
-                        length--; 
-                    }
-                    
-                    return true;
-                }
-                current = current.getNext();
-            }
-            return false;
-        }
-    }
+//    /**
+//     * remove the node holding value T
+//     * @param value - T value to be removed
+//     * @return boolean true if removed, false, if no such value in the list
+//     */
+//    public boolean remove(T value)
+//    {
+//        if(length==0)
+//        {
+//            return false;
+//        }
+//        else 
+//        {
+//            Node<T> current = head;
+//            while(current != null)
+//            {
+//                if(current.getInfo().equals(value))
+//                {
+//                    if(length == 1){ //if node to be deleted is only one in list
+//                        head = null;
+//                        length = 0;
+//                    }
+//                    else if(current.getNext() == null)//node is tail
+//                    {
+//                        current.getPrior().setNext(null);
+//                        length--;
+//                    }
+//                    else if(current == head)
+//                    {
+//                        head = current.getNext();
+//                        current.getNext().setPrior(null);
+//                        length--;
+//                    }
+//                    else
+//                    {
+//                        current.getNext().setPrior(current.getPrior()); 
+//                        current.getPrior().setNext(current.getNext());
+//                        length--; 
+//                    }
+//                    
+//                    return true;
+//                }
+//                current = current.getNext();
+//            }
+//            return false;
+//        }
+//    }
+//    
+//    
+//    /**
+//     * initialize the list for a subsequent call to next
+//     *
+//     */
+//    public void setFirst()
+//    {
+//        iterator = head;
+//       /**Node<T> newNode = new Node(value);
+//       newNode.setNext(head);
+//       head.setPrior(newNode);
+//       head=newNode;**/
+//    }
+//    
+//    /**
+//     * indicate whether a call to next will succeed
+//     * @return boolean true if the current node is not null, false otherwise
+//     */
+//    public boolean hasNext()
+//    {
+//        return iterator.next != null;
+//    }
     
-    
-    /**
-     * initialize the list for a subsequent call to next
-     *
-     */
-    public void setFirst()
-    {
-        iterator = head;
-       /**Node<T> newNode = new Node(value);
-       newNode.setNext(head);
-       head.setPrior(newNode);
-       head=newNode;**/
-    }
-    
-    /**
-     * indicate whether a call to next will succeed
-     * @return boolean true if the current node is not null, false otherwise
-     */
-    public boolean hasNext()
-    {
-        return iterator.next != null;
-    }
-    
-    /**
-     * return the value of the current node of type T
-     * and advance the current node to current.getNext()
-     * @return - value held by the current node of type T, and if iterator has reached end or if null then return null
-     */
-    public T next()
-    {
-        if(iterator == null)
-        {
-            return null;
-        }
-        else
-        {
-            return iterator.getInfo();
-        }
-            
-    }
+//    /**
+//     * return the value of the current node of type T
+//     * and advance the current node to current.getNext()
+//     * @return - value held by the current node of type T, and if iterator has reached end or if null then return null
+//     */
+//    public T next()
+//    {
+//        if(iterator == null)
+//        {
+//            return null;
+//        }
+//        else
+//        {
+//            return iterator.getInfo();
+//        }
+//            
+//    }
     
     public SDLLC<T>.Node<T> getHead() {
     		return head;
