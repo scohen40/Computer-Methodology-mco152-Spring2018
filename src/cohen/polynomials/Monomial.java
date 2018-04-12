@@ -73,4 +73,22 @@ public class Monomial implements Comparable<Monomial>
        }
        return result;
     }
+    
+    public void addMonomials(Monomial monomial) {
+    		if(this.getDegree() == monomial.getDegree()) {
+    			this.setCoeff(this.getCoeff() + monomial.getCoeff());
+    		}
+    }
+    
+    public void multiplyMonomials(Monomial monomial) {
+    		this.setCoeff(this.getCoeff() * monomial.getCoeff());
+    		this.setDegree(this.getDegree() + monomial.getDegree());
+    }
+    
+    public void multiplyConstant(int constant) {
+    		this.setCoeff(this.getCoeff()*constant);
+    }
+
+
+    
 }
