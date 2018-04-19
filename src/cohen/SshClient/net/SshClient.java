@@ -10,6 +10,13 @@ import java.net.UnknownHostException;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
+/**
+ * This program demonstrates a raw socket connection. You can send anything you want and also someone can talk to you without you talking to them. 
+ * So if you had a chat program, that's what would be ideal, because you don't need a request to receive something. Bi-directional communication at any time
+ * This is unlike the web which operates on a request and response basis.
+ * @author sc
+ */
+
 public class SshClient {
 	
 	public static void main(String args[]) {
