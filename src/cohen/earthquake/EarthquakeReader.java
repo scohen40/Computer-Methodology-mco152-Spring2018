@@ -16,12 +16,18 @@ public class EarthquakeReader {
 				new FileReader(new File("src/cohen/earthquake/all_month.geojson")));
 		EarthquakeFeed feed = gson.fromJson(in, EarthquakeFeed.class);
 		
-		int count = 0;
-		for(int i = 0; i < feed.getFeatures().size(); i++) {
-			if((feed.getFeatures()).getEarthquakeProperties.getMag()>=5) {
-				count++;
-			}
-		}
+//		int count = 0;
+//		for(int i = 0; i < feed.getFeatures().size(); i++) {
+//			if((feed.getFeatures()).getEarthquakeProperties.getMag()>=5) {
+//				count++;
+//			}
+//		}
+		
+		System.out.println(
+				feed.getFeatures()
+				.stream()
+				.filter(e -> e.getProperties().getMag() >= 5)
+				.count()); 	
 	}
 	
 	
