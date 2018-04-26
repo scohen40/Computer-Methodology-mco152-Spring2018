@@ -1,7 +1,10 @@
 package cohen.earthquake.net;
 
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.Optional;
 
+import cohen.earthquake.Earthquake;
 import cohen.earthquake.EarthquakeFeed;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,25 +22,45 @@ public class EarthquakeRetrofitClient {
 			USGSEarthquakeService service = 
 					retrofit.create(USGSEarthquakeService.class);
 			
-			Call<EarthquakeFeed> call = service.getAllMonth();
-				
+			Call<EarthquakeFeed> callMonth = service.getAllMonth();
+			Call<EarthquakeFeed> callWeek = service.getAllWeek();
+			Call<EarthquakeFeed> callDay = service.getAllDay();
+			Call<EarthquakeFeed> callHour = service.getAllHour();
 			//1st way of doing the call, that you don't want to do in the main, because it will make startup slower:
         		//Response<EarthquakeFeed> response = call.execute();
 			//better way of doing call: call.enqueue
 			//advantage of this is that when we enqueue, the request goes out automatically to another thread. 
-			call.enqueue(new Callback<EarthquakeFeed>() {
+			callMonth.enqueue(new Callback<EarthquakeFeed>() {
 
 				@Override
 				public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
 					EarthquakeFeed feed = response.body();
 		
-					System.out.println(
-							feed.getFeatures()
+					Optional<Earthquake> greatestMonth = feed.getFeatures()
 							.stream()
-							.filter(e -> e.getProperties().getMag() >= 5)
-							.count());
-					//don't put in GUI code
-					System.exit(0);
+							.max(e -> e.getProperties().getMag());
+					
+					
+				}
+				
+				@Override
+				public void onFailure(Call<EarthquakeFeed> call, Throwable t) {
+					t.printStackTrace(); 
+					
+				}
+				
+			});
+			
+			callWeek.enqueue(new Callback<EarthquakeFeed>() {
+
+				@Override
+				public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
+					EarthquakeFeed feed = response.body();
+					
+					Optional<Earthquake> greatestWeek = feed.getFeatures()
+							.stream()
+							.max(e -> e.getProperties().getMag());
+				
 					
 				}
 				
@@ -50,6 +73,47 @@ public class EarthquakeRetrofitClient {
 			});
 		
 			
+			callDay.enqueue(new Callback<EarthquakeFeed>() {
+
+				@Override
+				public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
+					EarthquakeFeed feed = response.body();
+					
+					Optional<Earthquake> greatestWeek = feed.getFeatures()
+							.stream()
+							.max(e -> e.getProperties().getMag());
+				
+					
+				}
+				
+				@Override
+				public void onFailure(Call<EarthquakeFeed> call, Throwable t) {
+					t.printStackTrace(); 
+					
+				}
+				
+			});
+			
+			callHour.enqueue(new Callback<EarthquakeFeed>() {
+
+				@Override
+				public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
+					EarthquakeFeed feed = response.body();
+					
+					Optional<Earthquake> greatestWeek = feed.getFeatures()
+							.stream()
+							.max(e -> e.getProperties().getMag());
+				
+					
+				}
+				
+				@Override
+				public void onFailure(Call<EarthquakeFeed> call, Throwable t) {
+					t.printStackTrace(); 
+					
+				}
+				
+			});
 			
 		}
 	
