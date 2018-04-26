@@ -59,13 +59,7 @@ public class EarthquakeRetrofitGUI extends JFrame{
 			.baseUrl("https://earthquake.usgs.gov")
 			.addConverterFactory(GsonConverterFactory.create())
 			.build();
-	USGSEarthquakeService service = 
-			retrofit.create(USGSEarthquakeService.class);
-	
-	private Call<EarthquakeFeed> callMonth = service.getAllMonth();
-	private Call<EarthquakeFeed> callWeek = service.getAllWeek();
-	private Call<EarthquakeFeed> callDay = service.getAllDay();
-	private Call<EarthquakeFeed> callHour = service.getAllHour();
+	USGSEarthquakeService service = retrofit.create(USGSEarthquakeService.class);
 	
 	public EarthquakeRetrofitGUI() throws IOException {
 		setTitle("Greatest Earthquake Viewer");
@@ -120,7 +114,7 @@ public class EarthquakeRetrofitGUI extends JFrame{
 	}
 	
 	public void changeMonth(ActionEvent event) {
-		
+		Call<EarthquakeFeed> callMonth = service.getAllMonth();
 		callMonth.enqueue(new Callback<EarthquakeFeed>() {
 
 			@Override
@@ -147,7 +141,7 @@ public class EarthquakeRetrofitGUI extends JFrame{
 	}
 	
 	public void changeWeek(ActionEvent event) {
-		
+		Call<EarthquakeFeed> callWeek = service.getAllWeek();
 		callWeek.enqueue(new Callback<EarthquakeFeed>() {
 
 			@Override
@@ -173,6 +167,7 @@ public class EarthquakeRetrofitGUI extends JFrame{
 	}
 	
 	public void changeToday(ActionEvent event) {
+		Call<EarthquakeFeed> callDay = service.getAllDay();
 		callDay.enqueue(new Callback<EarthquakeFeed>() {
 
 			@Override
@@ -198,6 +193,7 @@ public class EarthquakeRetrofitGUI extends JFrame{
 	}
 	
 	public void changeHour(ActionEvent event) {
+		Call<EarthquakeFeed> callHour = service.getAllHour();
 		callHour.enqueue(new Callback<EarthquakeFeed>() {
 
 			@Override
@@ -225,8 +221,7 @@ public class EarthquakeRetrofitGUI extends JFrame{
 	
 	
 	public static void main(String[] args) throws IOException {
-		new EarthquakeRetrofitGUI().setVisible(true);
-		
+		new EarthquakeRetrofitGUI().setVisible(true);	
 	}
 }
 	
