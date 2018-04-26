@@ -33,18 +33,17 @@ public class EarthquakeRetrofitClient {
 			callMonth.enqueue(new Callback<EarthquakeFeed>() {
 
 				@Override
-				public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
-					EarthquakeFeed feed = response.body();
+				public void onResponse(Call<EarthquakeFeed> callMonth, Response<EarthquakeFeed> responseMonth) {
+					EarthquakeFeed feed = responseMonth.body();
 		
 					Optional<Earthquake> greatestMonth = feed.getFeatures()
 							.stream()
-							.max(e -> e.getProperties().getMag());
-					
-					
+							.max(Comparator.comparing(e -> e.getProperties().getMag()));
+									
 				}
 				
 				@Override
-				public void onFailure(Call<EarthquakeFeed> call, Throwable t) {
+				public void onFailure(Call<EarthquakeFeed> callMonth, Throwable t) {
 					t.printStackTrace(); 
 					
 				}
@@ -54,18 +53,17 @@ public class EarthquakeRetrofitClient {
 			callWeek.enqueue(new Callback<EarthquakeFeed>() {
 
 				@Override
-				public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
-					EarthquakeFeed feed = response.body();
+				public void onResponse(Call<EarthquakeFeed> callWeek, Response<EarthquakeFeed> responseWeek) {
+					EarthquakeFeed feed = responseWeek.body();
 					
 					Optional<Earthquake> greatestWeek = feed.getFeatures()
 							.stream()
-							.max(e -> e.getProperties().getMag());
-				
-					
+							.max(Comparator.comparing(e -> e.getProperties().getMag()));
+								
 				}
 				
 				@Override
-				public void onFailure(Call<EarthquakeFeed> call, Throwable t) {
+				public void onFailure(Call<EarthquakeFeed> callWeek, Throwable t) {
 					t.printStackTrace(); 
 					
 				}
@@ -76,18 +74,17 @@ public class EarthquakeRetrofitClient {
 			callDay.enqueue(new Callback<EarthquakeFeed>() {
 
 				@Override
-				public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
-					EarthquakeFeed feed = response.body();
+				public void onResponse(Call<EarthquakeFeed> callDay, Response<EarthquakeFeed> responseDay) {
+					EarthquakeFeed feed = responseDay.body();
 					
 					Optional<Earthquake> greatestWeek = feed.getFeatures()
 							.stream()
-							.max(e -> e.getProperties().getMag());
-				
-					
+							.max(Comparator.comparing(e -> e.getProperties().getMag()));
+						
 				}
 				
 				@Override
-				public void onFailure(Call<EarthquakeFeed> call, Throwable t) {
+				public void onFailure(Call<EarthquakeFeed> callDay, Throwable t) {
 					t.printStackTrace(); 
 					
 				}
@@ -97,18 +94,17 @@ public class EarthquakeRetrofitClient {
 			callHour.enqueue(new Callback<EarthquakeFeed>() {
 
 				@Override
-				public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
-					EarthquakeFeed feed = response.body();
+				public void onResponse(Call<EarthquakeFeed> callHour, Response<EarthquakeFeed> responseHour) {
+					EarthquakeFeed feed = responseHour.body();
 					
 					Optional<Earthquake> greatestWeek = feed.getFeatures()
 							.stream()
-							.max(e -> e.getProperties().getMag());
-				
+							.max(Comparator.comparing(e -> e.getProperties().getMag()));
 					
 				}
 				
 				@Override
-				public void onFailure(Call<EarthquakeFeed> call, Throwable t) {
+				public void onFailure(Call<EarthquakeFeed> callHour, Throwable t) {
 					t.printStackTrace(); 
 					
 				}
