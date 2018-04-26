@@ -19,13 +19,18 @@ import cohen.earthquake.EarthquakeFeed;
 public class EarthquakeClient {
 	public static void main(String[] args) throws IOException {
 		
+		//URL class encapsulates a url
 		URL url = new URL("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson");
+		//opens up a web-style connection. internally it uses a socket, but it's made in a way that we don't have to worry about http difficulties,
+		//that would come up with using a socket. 
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		
+		//how we read from our connection
 		InputStream in = connection.getInputStream();
+		//pipe into buffered reader to read easier
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+		//Gson and Earthquake feed to noget the actual json info
 		Gson gson = new Gson();
-		
 		EarthquakeFeed feed = gson.fromJson(reader, EarthquakeFeed.class);
 		
 		System.out.println(
