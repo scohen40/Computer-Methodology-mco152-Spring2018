@@ -35,13 +35,13 @@ public class EarthquakeView extends JFrame{
 
 	private JFormattedTextField word = new JFormattedTextField();
 	private JButton refresh = new JButton("refresh");
-	private JLabel magLabel = new JLabel("Magnitude:");
+	private JLabel magLabel = new JLabel("Largest Magnitude this Month:");
 	private JLabel placeLabel = new JLabel("Place:");
-	private JLabel magLabel2 = new JLabel("Magnitude:");
+	private JLabel magLabel2 = new JLabel("Largest Magnitude this Week:");
 	private JLabel placeLabel2 = new JLabel("Place:");
-	private JLabel magLabel3 = new JLabel("Magnitude:");
+	private JLabel magLabel3 = new JLabel("Largest Magnitude Today:");
 	private JLabel placeLabel3 = new JLabel("Place:");
-	private JLabel magLabel4 = new JLabel("Magnitude:");
+	private JLabel magLabel4 = new JLabel("Largest Magnitude in the Past Hour:");
 	private JLabel placeLabel4 = new JLabel("Place:");
 	private JFormattedTextField monthMagText = new JFormattedTextField();
 	private JFormattedTextField monthPlaceText = new JFormattedTextField();
@@ -52,7 +52,13 @@ public class EarthquakeView extends JFrame{
 	private JFormattedTextField hourMagText = new JFormattedTextField();
 	private JFormattedTextField hourPlaceText = new JFormattedTextField();
 
+	private Retrofit retrofit = new Retrofit.Builder()
+			.baseUrl("https://earthquake.usgs.gov")
+			.addConverterFactory(GsonConverterFactory.create())
+			.build();
+	private USGSEarthquakeService service = retrofit.create(USGSEarthquakeService.class);
 	
+	EarthquakeController controller = new EarthquakeController(this, service);
 	
 	public EarthquakeView() throws IOException {
 		setTitle("Greatest Earthquake Viewer");
@@ -85,23 +91,17 @@ public class EarthquakeView extends JFrame{
 		results.add(hourMagText);
 		results.add(placeLabel4);
 		results.add(hourPlaceText);
-		
-		//month.addActionListener(this::changeMonth);
-//		week.addActionListener(this::changeWeek);
-//		today.addActionListener(this::changeToday);
-//		hour.addActionListener(this::changeHour);
 
+		controller.refreshData();
+	
+		refresh.addActionListener(this::refreshFields);
+		
 		add(panel);
 		
-		Retrofit retrofit = new Retrofit.Builder()
-				.baseUrl("https://earthquake.usgs.gov")
-				.addConverterFactory(GsonConverterFactory.create())
-				.build();
-		USGSEarthquakeService service = retrofit.create(USGSEarthquakeService.class);
-		
-		EarthquakeController controller = new EarthquakeController(this, service);
+	}
+	
+	public void refreshFields(ActionEvent event) {
 		controller.refreshData();
-		
 	}
 	
 	public JFormattedTextField getMonthMagText() {
