@@ -44,16 +44,10 @@ public class Monomial implements Comparable<Monomial>
         return coeff;
     }
    
-    
-    public boolean isEquals(Monomial mon)
+   
+    public boolean equals(Monomial mon)
     {
-        if(this.compareTo(mon)==0)
-        {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return compareTo(mon) == 0;
     }
     
     public int compareTo(Monomial mon)

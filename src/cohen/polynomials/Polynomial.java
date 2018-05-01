@@ -6,7 +6,7 @@ public class Polynomial {
 	LinkedList<Monomial> terms;
 
 	public Polynomial() {
-		terms = new LinkedList();
+		terms = new LinkedList<Monomial>();
 	}
 
 	/**
@@ -20,21 +20,18 @@ public class Polynomial {
 		Monomial monomial = new Monomial(deg, co);
 		if (this.terms.size() == 0) {
 			terms.add(monomial);
+		} else if (monomial.getDegree() > terms.get(0).getDegree()) {
+			terms.addFirst(monomial);
 		} else {
-			ListIterator<Monomial> listIterator = terms.listIterator();
-			while (listIterator.hasNext())
-				if (monomial.getDegree() == listIterator.next().getDegree()) {
-					listIterator.next().addMonomials(monomial);
+			for (Monomial mon : terms) {
+				if (mon.getDegree() == monomial.getDegree()) {
+					mon.addMonomials(monomial);
 				} else {
 					terms.add(monomial);
 				}
+			}
 		}
 	}
-
-	/**
-	 * The subtractTerm method is to take away a single monomial from the list
-	 * terms.
-	 */
 
 	/**
 	 * The multiplyMonomial method is to multiply the given polynomial by a
@@ -46,9 +43,8 @@ public class Polynomial {
 	public void multiplyMonomial(int deg, int co) {
 		Monomial monomial = new Monomial(deg, co);
 		if (terms.size() > 0) {
-			ListIterator<Monomial> listIterator = terms.listIterator();
-			while (listIterator.hasNext()) {
-				listIterator.next().multiplyMonomials(monomial);
+			for (Monomial mon : terms) {
+				mon.multiplyMonomials(monomial);
 			}
 		}
 	}
@@ -57,45 +53,43 @@ public class Polynomial {
 	 * The timesConst method is to multiply the given polynomial by a constant
 	 * 
 	 * @param const
+	 *            - The constant number to multiply the linked list of monomials,
+	 *            terms, by
 	 */
 	public void timesConst(int constant) {
 		if (terms.size() > 0) {
-			ListIterator<Monomial> listIterator = terms.listIterator();
-			while (listIterator.hasNext()) {
-				listIterator.next().multiplyConstant(constant);
+			for (Monomial mon : terms) {
+				mon.multiplyConstant(constant);
 			}
 		}
 	}
 
 	/**
 	 * The method printPolynomial is used to create and return a string of a
-	 * completed polynomial. The method first dumps all of the linked list data into
-	 * an array list, sorts it, and loops through it adding to a string that it will
-	 * return.
+	 * completed polynomial.
 	 * 
-	 * @return
+	 * @return String with all of the monomials in the terms linked list
 	 */
-	public String printPolynomial() {
-		List<Monomial> arrayListMonomial = new ArrayList<>();
-		arrayListMonomial.addAll(0, terms);
+	public String toString() {
+		StringBuilder string = new StringBuilder();
+		if (terms.size() != 0) {
+			for (Monomial mon : terms) {
+				if (mon.getCoeff() > 0) {
+					string.append( mon.getCoeff() + "x^" + mon.getDegree() + " + ");
+				}
+				else {
+					string.append(mon.getDegree());
+				}
 
-		Collections.sort(arrayListMonomial, Collections.reverseOrder());
-		String string = null;
-		ListIterator<Monomial> listIterator = arrayListMonomial.listIterator();
-		while (listIterator.hasNext()) {
-			Monomial current = listIterator.next();
-			if (current.getCoeff() > 0) {
-				string = string + " + " + current.getCoeff() + "x^" + current.getDegree()
-						+ " /n";
 			}
-
+		} else {
+			string.append("empty polynomial");
 		}
-		return string;
-
+		return string.toString();
 	}
 
 	public void makeEmpty() {
-		terms = null;
+		terms.clear();
 	}
 
 }

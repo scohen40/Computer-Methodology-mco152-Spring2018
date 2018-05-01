@@ -1,6 +1,5 @@
 package cohen.polynomials;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
@@ -53,6 +52,7 @@ public class PolynomialCalculatorGUI extends JFrame {
 		buttons.add(multiply);
 		buttons.add(clear);
 		output.add(current, SwingConstants.CENTER);
+		polynomial.setEditable(false);
 		output.add(polynomial);
 		
 		add.addActionListener(this::addMonomial);
@@ -70,7 +70,7 @@ public class PolynomialCalculatorGUI extends JFrame {
 		deg.setText("");
 		if(coefNum != 0 && (Integer)degNum != null) {
 			poly.addTerm(degNum, coefNum);
-			polynomial.setText(poly.printPolynomial());
+			polynomial.setText(poly.toString());
 		}	
 	}
 	
@@ -80,14 +80,14 @@ public class PolynomialCalculatorGUI extends JFrame {
 		coef.setText("");
 		deg.setText("");
 		
-		if(coefNum != 0 && (Integer)degNum != null) {
+		if(coefNum != 0 && (Integer)degNum != 0) {
 			if(degNum == 0) {
 				poly.timesConst(coefNum);
 			}
 			else {
 				poly.multiplyMonomial(degNum, coefNum);
 			}
-			polynomial.setText(poly.printPolynomial());
+			polynomial.setText(poly.toString());
 		}	
 	}
 

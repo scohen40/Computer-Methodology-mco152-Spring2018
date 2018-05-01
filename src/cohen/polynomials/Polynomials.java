@@ -5,6 +5,7 @@ public class Polynomials {
 		Polynomial poly = new Polynomial();
 		
 		poly.addTerm(4, 6);
-		poly.printPolynomial();
+		poly.addTerm(4, 6);
+		poly.toString();
 	}
 }

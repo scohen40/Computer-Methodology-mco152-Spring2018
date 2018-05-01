@@ -13,6 +13,8 @@ class PolynomialTest {
 		Polynomial p = new Polynomial();
 		//when
 		p.addTerm(5, 5);
+		p.addTerm(4, 6);
+		p.toString();
 		//then
 		Assert.assertEquals(new Integer(5), new Integer(p.terms.getFirst().getCoeff()));
 	}
