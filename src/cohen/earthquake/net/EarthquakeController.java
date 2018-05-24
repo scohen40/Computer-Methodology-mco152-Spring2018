@@ -6,8 +6,10 @@ import java.util.Optional;
 
 import javax.swing.text.JTextComponent;
 
+import com.google.inject.Inject;
+
 import cohen.earthquake.Earthquake;
-import cohen.earthquake.EarthquakeFeed;
+import cohen.earthquake.EarthquakeFeedModel;
 import cohen.earthquake.EarthquakeProperties;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,6 +19,7 @@ public class EarthquakeController {
 	private EarthquakeView view;
 	private USGSEarthquakeService service;
 	
+	@Inject
 	EarthquakeController(EarthquakeView view, USGSEarthquakeService service) {
 		this.view = view;
 		this.service = service;
@@ -29,7 +32,7 @@ public class EarthquakeController {
 		requestHour();
 	}
 	
-	private void requestMonth() {
+	void requestMonth() {
 		requestEarthquakeFeed(service.getAllMonth(),
 				view.getMonthMagText(),
 				view.getMonthPlaceText());			
@@ -52,25 +55,21 @@ public class EarthquakeController {
 	
 
 
-	private void requestEarthquakeFeed(Call<EarthquakeFeed> call,
+	private void requestEarthquakeFeed(Call<EarthquakeFeedModel> call,
 		JTextComponent magnitudeField,
 		JTextComponent placeField) 
 	{
-		call.enqueue(new Callback<EarthquakeFeed>() {
+		call.enqueue(new Callback<EarthquakeFeedModel>() {
 			@Override
-			public void onResponse(Call<EarthquakeFeed> call, Response<EarthquakeFeed> response) {
-				EarthquakeFeed feed = response.body();
+			public void onResponse(Call<EarthquakeFeedModel> call, Response<EarthquakeFeedModel> response) {
+				EarthquakeFeedModel feed = response.body();
 
-				Optional<Earthquake> largest = feed.getFeatures().stream()
-						.max(Comparator.comparing(e -> e.getProperties().getMag()));
-
-				magnitudeField.setText(String.valueOf(largest.get().getProperties().getMag()));
-				placeField.setText(String.valueOf(largest.get().getProperties().getPlace()));
+				showLargestEarthquake(magnitudeField, placeField, feed);
 
 			}
 
 			@Override
-			public void onFailure(Call<EarthquakeFeed> call, Throwable t) {
+			public void onFailure(Call<EarthquakeFeedModel> call, Throwable t) {
 				t.printStackTrace();
 
 			}
@@ -78,7 +77,18 @@ public class EarthquakeController {
 		});
 
 	}
+
+	void showLargestEarthquake(JTextComponent magnitudeField, 
+			JTextComponent placeField,
+			EarthquakeFeedModel feed) 
+	{
+		Optional<Earthquake> largest = feed.getFeatures().stream()
+				.max(Comparator.comparing(e -> e.getProperties().getMag()));
 		
+		magnitudeField.setText(String.valueOf(largest.get().getProperties().getMag()));
+		placeField.setText(String.valueOf(largest.get().getProperties().getPlace()));
 	}
+		
+}
 
 

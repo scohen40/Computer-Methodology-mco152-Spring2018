@@ -14,7 +14,7 @@ public class EarthquakeReader {
 		
 		BufferedReader in = new BufferedReader(
 				new FileReader(new File("src/cohen/earthquake/all_month.geojson")));
-		EarthquakeFeed feed = gson.fromJson(in, EarthquakeFeed.class);
+		EarthquakeFeedModel feed = gson.fromJson(in, EarthquakeFeedModel.class);
 		
 //		int count = 0;
 //		for(int i = 0; i < feed.getFeatures().size(); i++) {

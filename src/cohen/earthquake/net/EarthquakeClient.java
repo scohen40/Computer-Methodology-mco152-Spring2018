@@ -10,7 +10,7 @@ import java.net.URL;
 
 import com.google.gson.Gson;
 
-import cohen.earthquake.EarthquakeFeed;
+import cohen.earthquake.EarthquakeFeedModel;
 
 /**
  * This is code to download the GeoJSON file directly from the web, not from a local file. 

@@ -23,12 +23,16 @@ public class Polynomial {
 		} else if (monomial.getDegree() > terms.get(0).getDegree()) {
 			terms.addFirst(monomial);
 		} else {
+			boolean check = false;
 			for (Monomial mon : terms) {
 				if (mon.getDegree() == monomial.getDegree()) {
 					mon.addMonomials(monomial);
-				} else {
-					terms.add(monomial);
-				}
+					check = true;
+					break;
+				} 	
+			}
+			if(!check) {
+				terms.add(monomial);
 			}
 		}
 	}

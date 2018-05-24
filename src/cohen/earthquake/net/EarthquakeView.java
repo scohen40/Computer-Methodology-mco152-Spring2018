@@ -18,10 +18,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.google.inject.Singleton;
+
 import cohen.change.Change;
 import cohen.change.VendingMachine;
 import cohen.earthquake.Earthquake;
-import cohen.earthquake.EarthquakeFeed;
+import cohen.earthquake.EarthquakeFeedModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 
-
+@Singleton
 public class EarthquakeView extends JFrame{
 
 	private JFormattedTextField word = new JFormattedTextField();
@@ -52,13 +56,7 @@ public class EarthquakeView extends JFrame{
 	private JFormattedTextField hourMagText = new JFormattedTextField();
 	private JFormattedTextField hourPlaceText = new JFormattedTextField();
 
-	private Retrofit retrofit = new Retrofit.Builder()
-			.baseUrl("https://earthquake.usgs.gov")
-			.addConverterFactory(GsonConverterFactory.create())
-			.build();
-	private USGSEarthquakeService service = retrofit.create(USGSEarthquakeService.class);
 	
-	EarthquakeController controller = new EarthquakeController(this, service);
 	
 	public EarthquakeView() throws IOException {
 		setTitle("Greatest Earthquake Viewer");
@@ -92,7 +90,6 @@ public class EarthquakeView extends JFrame{
 		results.add(placeLabel4);
 		results.add(hourPlaceText);
 
-		controller.refreshData();
 	
 		refresh.addActionListener(this::refreshFields);
 		
@@ -101,7 +98,7 @@ public class EarthquakeView extends JFrame{
 	}
 	
 	public void refreshFields(ActionEvent event) {
-		controller.refreshData();
+//		controller.refreshData();
 	}
 	
 	public JFormattedTextField getMonthMagText() {
@@ -129,8 +126,22 @@ public class EarthquakeView extends JFrame{
 		return hourPlaceText;
 	}
 		
-	public static void main(String[] args) throws IOException {
-		new EarthquakeView().setVisible(true);	
+	public static void main(String[] args) throws IOException {	
+		//Instead of creating the dependencies inside the class, create it outside 
+		//use Guice to create objects and wire them together. 
+
+		//the injector creates the view and the controller for me and automatically wires it up
+		//to my retrofit and service as described in the EarthquakeModule. 
+		Injector injector = Guice.createInjector(new EarthquakeModule());
+		
+		EarthquakeView view = injector.getInstance(EarthquakeView.class);
+		//put in @Singleton before the EarthquakeView name up top in order to make sure there is only one view, because controller also has a view as a member. 
+		//So we create 2 views and it doesn't work without the implementation of the Singleton Design Pattern 
+		EarthquakeController controller = injector.getInstance(EarthquakeController.class);
+		
+		controller.refreshData();
+		
+		view.setVisible(true);	
 	}
 	
 	
