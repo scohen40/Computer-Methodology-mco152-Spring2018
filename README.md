@@ -1,4 +1,4 @@
-# cohen-mco152-spring-2018
+# Computer-Methodology-mco152-Spring2018
 Computer Methodology Class
 
 **Class Projects**
