@@ -1,5 +1,5 @@
 # Computer-Methodology-mco152-Spring2018
-Computer Methodology Class
+# Computer Methodology Class
 
 **Class Projects**
 ***
